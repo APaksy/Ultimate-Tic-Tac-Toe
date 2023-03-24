@@ -123,7 +123,7 @@ class MainBoard_UI:
         self.lines.append(Box(x+tileWidth, y, lineWidth, size, lineColour, rounding=4))
 
     def update_tiles(self):
-        playerCharDict = {-1 : 'O', 0 : '', 1 : 'X', 2 : ''}
+        playerCharDict = {-1 : 'O', None : '', 0 : '', 1 : 'X'}
         for i, player in enumerate(self.board.get_board()):
             self.text[i].set_text(playerCharDict[player])
 
@@ -160,14 +160,14 @@ class Board_UI:
 
     def check_press(self, pos):
         for i, tile in enumerate(self.tiles):
-            if tile.check_press(pos) and self.board.get_board()[i] == 0:
+            if tile.check_press(pos) and self.board.get_board()[i] is None:
                 return i
             
     def set_active(self, active):
         self.active = active
             
     def update_tiles(self):
-        playerCharDict = {-1 : 'O', 0 : '', 1 : 'X'}
+        playerCharDict = {-1 : 'O', None : '', 1 : 'X'}
         for i, player in enumerate(self.board.get_board()):
             self.tiles[i].update_text(playerCharDict[player])
 
